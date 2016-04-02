@@ -21,7 +21,11 @@
     "watch:css": "chokidar 'src/*.css' -c 'cp src/*.css dist/'",
     "watch:elm": "chokidar '**/*.elm' -c 'elm make --warn src/Main.elm --output dist/Main.js'",
     "watch:dist": "npm run watch:elm & npm run watch:html & npm run watch:js & npm run watch:css",
-    "watch": "npm run mkdir:dist && npm run make:dist && npm run watch:dist & ws -d dist"
+    "watch": "npm run mkdir:dist && npm run make:dist && npm run watch:dist & ws -d dist",
+    "build": "npm run test && npm run make:dist",
+    "elm:make:test-raw": "elm-make --warn test/TestMain.elm --output test/compiled/TestMain-Raw.js",
+    "console:make:test": "sh ./elm-stuff/packages/laszlopandy/elm-console/1.1.1/elm-io.sh test/compiled/TestMain-Raw.js test/compiled/TestMain.js",
+    "test": "npm run elm:make:test-raw && npm run console:make:test && node test/compiled/TestMain.js"
   },
   "devDependencies": {
     "chokidar-cli": "^1.2.0",
