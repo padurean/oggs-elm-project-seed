@@ -2,7 +2,14 @@
   "name": "oggs-elm-project-seed",
   "version": "1.0.0",
   "description": "Ogg's seed (boilerplate) for Elm projects.",
-  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/padurean/oggs-elm-project-seed.git"
+  },
+  "author": "Ogg (Valentin Padurean)",
+  "keywords": ["Elm", "Boilerplate", "Starter", "Kit", "Seed"],
+  "license": "ISC",
+  "main": "dist/Main.js",
   "scripts": {
     "mkdir:dist": "rm -Rf dist && mkdir dist",
     "copy:dist:html": "cp src/index.html dist/",
@@ -16,15 +23,6 @@
     "watch:dist": "npm run watch:elm & npm run watch:html & npm run watch:js & npm run watch:css",
     "watch": "npm run mkdir:dist && npm run make:dist && npm run watch:dist & ws -d dist"
   },
-  "keywords": [
-    "Elm",
-    "Boilerplate",
-    "Starter",
-    "Kit",
-    "Seed"
-  ],
-  "author": "Ogg (Valentin Padurean)",
-  "license": "ISC",
   "devDependencies": {
     "chokidar-cli": "^1.2.0",
     "local-web-server": "^1.2.1"
