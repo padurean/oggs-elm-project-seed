@@ -1,0 +1,32 @@
+{
+  "name": "oggs-elm-project-seed",
+  "version": "1.0.0",
+  "description": "Ogg's seed (boilerplate) for Elm projects.",
+  "main": "main.js",
+  "scripts": {
+    "mkdir:dist": "rm -Rf dist && mkdir dist",
+    "copy:dist:html": "cp src/index.html dist/",
+    "copy:dist:js": "cp src/*.js dist/",
+    "copy:dist:css": "cp src/*.css dist/",
+    "elm:make": "elm make --warn src/Main.elm --output dist/Main.js",
+    "make:dist": "npm run copy:dist:html & npm run copy:dist:js & npm run copy:dist:css && npm run elm:make",
+    "watch:html": "chokidar 'src/index.html' -c 'cp src/index.html dist/'",
+    "watch:js": "chokidar 'src/*.js' -c 'cp src/*.js dist/'",
+    "watch:css": "chokidar 'src/*.css' -c 'cp src/*.css dist/'",
+    "watch:elm": "chokidar '**/*.elm' -c 'elm make --warn src/Main.elm --output dist/Main.js'",
+    "watch:dist": "npm run watch:elm & npm run watch:html & npm run watch:js & npm run watch:css",
+    "watch": "npm run mkdir:dist && npm run make:dist && npm run watch:dist"
+  },
+  "keywords": [
+    "Elm",
+    "Boilerplate",
+    "Starter",
+    "Kit",
+    "Seed"
+  ],
+  "author": "Ogg (Valentin Padurean)",
+  "license": "ISC",
+  "devDependencies": {
+    "chokidar-cli": "^1.2.0"
+  }
+}
