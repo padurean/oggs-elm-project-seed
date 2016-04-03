@@ -21,14 +21,11 @@ npm run watch
 npm run test
 ```
 
-or
+or, when working on tests, in order to get them automatically re-run on changes:
 
 ```
 npm run watch:test
 ```
-
-when working on tests, in order to have them automatically re-run on changes.
-
 
 ### Run tests and build the distribution
 
