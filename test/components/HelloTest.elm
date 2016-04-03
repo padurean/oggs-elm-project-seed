@@ -8,7 +8,6 @@ import Components.Hello exposing (hello)
 
 testHello : Assertion
 testHello =
-  -- TODO OGG: make it work
   let
       actual =
           hello {counter = 1}
