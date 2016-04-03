@@ -3,7 +3,7 @@ module Components.HelloTest (..) where
 import ElmTest exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Components.Hello exposing (hello)
+import Components.Hello exposing (hello, updateGreetingMessage)
 
 
 testHello : Assertion
@@ -21,7 +21,19 @@ testHello =
     assertEqual (1 + 2) 3
 
 
+testUpdateGreetingMessage : Assertion
+testUpdateGreetingMessage =
+  let
+    actual =
+      updateGreetingMessage {counter = 2}
+    expected =
+      "Hello, World ! !"
+  in
+    assertEqual actual expected
+
+
 tests : List Test
 tests =
-  [ test "HelloTest.hello" testHello
+  [ test "Components.Hello.hello" testHello,
+    test "Components.Hello.updateGreetingMessage" testUpdateGreetingMessage
   ]

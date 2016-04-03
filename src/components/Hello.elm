@@ -14,4 +14,9 @@ hello : HelloModel -> Html
 hello model =
   div
     [ class "" ]
-    [ text ("Hello, World" ++ (" !" |> String.repeat model.counter)) ]
+    [ (text << updateGreetingMessage) model ]
+
+
+updateGreetingMessage : HelloModel -> String
+updateGreetingMessage model =
+  "Hello, World" ++ (" !" |> String.repeat model.counter)
