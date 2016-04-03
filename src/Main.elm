@@ -14,10 +14,29 @@ import StartApp
 
 -- component import example
 
-import Components.Hello exposing (hello)
+import Components.Hello exposing (HelloModel, hello)
+
+
+-- MODEL
+
+
+type alias Model =
+  { helloModel : HelloModel
+  }
+
+
+
+-- INIT
+
+
+init : ( Model, Effects Action )
+init =
+  ( { helloModel = { counter = 0 } }, Effects.none )
+
 
 
 -- APP KICK OFF!
+
 
 app : StartApp.App Model
 app =
@@ -25,30 +44,13 @@ app =
     { init = init
     , update = update
     , view = view
-    , inputs = [  ]
+    , inputs = []
     }
 
 
 main : Signal Html
 main =
   app.html
-
-
-
--- MODEL
-
-
-type alias Model =
-  Int
-
-
-
--- INIT
-
-
-init : (Model, Effects Action)
-init =
-  (0, Effects.none)
 
 
 
@@ -63,7 +65,7 @@ view : Signal.Address Action -> Model -> Html
 view address model =
   div
     [ class "", style styles.wrapper ]
-    [ hello model
+    [ hello model.helloModel
     , p [ style [ ( "color", "#FFF" ) ] ] [ text ("Ogg's Elm Project Seed") ]
     , button [ class "", onClick address Increment ] [ text "FTW!" ]
     ]
@@ -78,21 +80,29 @@ type Action
   | Increment
 
 
-update : Action -> Model -> (Model, Effects Action)
+update : Action -> Model -> ( Model, Effects Action )
 update action model =
   case action of
     NoOp ->
       ( model, Effects.none )
 
     Increment ->
-      ( model + 1, Effects.none )
+      let
+        currentCounter =
+          model.helloModel.counter
+
+        updatedModel =
+          { model | helloModel = { counter = currentCounter + 1 } }
+      in
+        ( updatedModel, Effects.none )
 
 
 
 -- CSS STYLES
 
+
 type alias Styles =
-  { wrapper : List (String, String)
+  { wrapper : List ( String, String )
   }
 
 

@@ -28,7 +28,7 @@
     "watch:elm": "chokidar 'src/**/*.elm' -c 'elm make --warn src/Main.elm --output dist/Main.js'",
     "watch:dist": "npm run watch:elm & npm run watch:html & npm run watch:js & npm run watch:css & npm run watch:favicon",
 
-    "watch:test:elm": "chokidar 'src/**/*.elm' 'test/*.elm' -c 'npm run test'",
+    "watch:test:elm": "chokidar 'src/**/*.elm' 'test/**/*.elm' -c 'npm run test'",
 
     "elm:make:test-raw": "elm-make --warn test/TestMain.elm --output test/compiled/TestMain-Raw.js",
     "console:make:test": "sh ./elm-stuff/packages/laszlopandy/elm-console/1.1.1/elm-io.sh test/compiled/TestMain-Raw.js test/compiled/TestMain.js",
