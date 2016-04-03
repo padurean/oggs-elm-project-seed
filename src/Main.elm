@@ -88,11 +88,13 @@ update action model =
 
     Increment ->
       let
-        currentCounter =
-          model.helloModel.counter
+        nextCounter =
+          model.helloModel.counter + 1
 
         updatedModel =
-          { model | helloModel = { counter = currentCounter + 1 } }
+          { model |
+              helloModel = { counter = nextCounter }
+          }
       in
         ( updatedModel, Effects.none )
 

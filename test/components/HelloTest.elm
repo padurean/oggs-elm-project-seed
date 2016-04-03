@@ -9,18 +9,17 @@ import Components.Hello exposing (hello)
 testHello : Assertion
 testHello =
   -- TODO OGG: make it work
-  -- let
-  --     helloModel =
-  --         {counter = 1}
-  --     actual =
-  --         hello helloModel
-  --     expected =
-  --         div
-  --         [ class "" ]
-  --         [ text ("Hello, World!") ]
-  -- in
-  --     assertEqual actual expected
-  assertEqual (1 + 2) 3
+  let
+      actual =
+          hello {counter = 1}
+      expected =
+          div
+          [ class "" ]
+          [ text ("Hello, World!") ]
+  in
+    -- TODO OGG: make it work:
+    -- assertEqual actual expected
+    assertEqual (1 + 2) 3
 
 
 tests : List Test
