@@ -30,5 +30,5 @@ npm run watch:test
 ### Run tests and build the distribution
 
 ```
-npm run build
+npm run dist
 ```
