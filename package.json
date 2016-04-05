@@ -7,39 +7,42 @@
     "url": "https://github.com/padurean/oggs-elm-project-seed.git"
   },
   "author": "Ogg (Valentin Padurean)",
-  "keywords": ["Elm", "Boilerplate", "Starter", "Kit", "Seed"],
+  "keywords": [
+    "Elm",
+    "Boilerplate",
+    "Starter",
+    "Kit",
+    "Seed"
+  ],
   "license": "ISC",
   "main": "dist/Main.js",
   "scripts": {
     "mkdir:dist": "rm -Rf dist && mkdir dist",
-
     "copy:dist:html": "cp src/index.html dist/",
-    "copy:dist:css": "cp src/*.css dist/",
+    "uglify:css": "parallelshell 'uglifycss src/css/thirdparty/some-css-provider/css.css src/css/css.css > dist/css.min.css'",
+    "uglify:js": "parallelshell 'uglifyjs src/js/thirdparty/some-js-provider/js.js src/js/js.js -o dist/js.min.js'",
     "copy:dist:favicon": "cp src/favicon.ico dist/",
-
     "elm:make": "elm make --warn src/Main.elm --output dist/Main.js",
-
-    "make:dist": "npm run copy:dist:html & npm run copy:dist:css & npm run copy:dist:favicon && npm run elm:make",
-
+    "make:dist": "npm run copy:dist:html & npm run uglify:js & npm run uglify:css & npm run copy:dist:favicon && npm run elm:make",
     "watch:html": "chokidar 'src/index.html' -c 'cp src/index.html dist/'",
-    "watch:js": "chokidar 'src/*.js' -c 'cp src/*.js dist/'",
-    "watch:css": "chokidar 'src/*.css' -c 'cp src/*.css dist/'",
+    "watch:js": "chokidar 'src/js/**/*.js' -c 'npm run uglify:js'",
+    "watch:css": "chokidar 'src/css/**/*.css' -c 'npm run uglify:css'",
     "watch:favicon": "chokidar 'src/favicon.ico' -c 'cp src/favicon.ico dist/'",
     "watch:elm": "chokidar 'src/**/*.elm' -c 'elm make --warn src/Main.elm --output dist/Main.js'",
     "watch:dist": "npm run watch:elm & npm run watch:html & npm run watch:js & npm run watch:css & npm run watch:favicon",
-
     "watch:test:elm": "chokidar 'src/**/*.elm' 'test/**/*.elm' -c 'npm run test'",
-
     "elm:make:test-raw": "elm-make --warn test/TestMain.elm --output test/compiled/TestMain-Raw.js",
     "console:make:test": "sh ./elm-stuff/packages/laszlopandy/elm-console/1.1.1/elm-io.sh test/compiled/TestMain-Raw.js test/compiled/TestMain.js",
-
     "watch": "npm run mkdir:dist && npm run make:dist && npm run watch:dist & ws -d dist",
-    "build": "npm run mkdir:dist && npm run test && npm run make:dist",
+    "dist": "npm run mkdir:dist && npm run test && npm run make:dist",
     "test": "npm run elm:make:test-raw && npm run console:make:test && node test/compiled/TestMain.js",
     "watch:test": "npm run test & npm run watch:test:elm"
   },
   "devDependencies": {
     "chokidar-cli": "^1.2.0",
-    "local-web-server": "^1.2.1"
+    "local-web-server": "^1.2.1",
+    "parallelshell": "^2.0.0",
+    "uglify-js": "^2.6.2",
+    "uglifycss": "0.0.20"
   }
 }
