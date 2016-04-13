@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "chokidar-cli": "^1.2.0",
+    "elm": "^0.16.0",
     "local-web-server": "^1.2.1",
     "parallelshell": "^2.0.0",
     "uglify-js": "^2.6.2",
